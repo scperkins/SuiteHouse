@@ -63,6 +63,48 @@ include(BASE_URL . 'header.php');
 			</dd>
 
 			<!-- Run configuration of tables here -->
+			<?php
+				if(!$create){
+					//Check for database existing
+					if(mysql_select_db(DATABASE_NAME)){
+						//Check out the existence of each table we need
+
+						//Users table
+						echo "<dt>Users Table</dt>";
+						echo "<dd>";
+						echo (false !== mysql_query("SELECT 1 from `users`")) ? "Existing" : "Does not Exist, please run the creation script";
+						echo "</dd>";
+
+						//Houses table
+						echo "<dt>Houses Table</dt>";
+						echo "<dd>";
+						echo (false !== mysql_query("SELECT 1 from `houses`")) ? "Existing" : "Does not Exist, please run the creation script";
+						echo "</dd>";
+
+						//Tasks tables
+						echo "<dt>Tasks Table</dt>";
+						echo "<dd>";
+						echo (false !== mysql_query("SELECT 1 from `tasks`")) ? "Existing" : "Does not Exist, please run the creation script";
+						echo "</dd>";
+
+
+
+					}else{
+						//Can't run config scripts if the database doesn't exist
+						?>
+							<dt>Table Status failed</dt>
+							<dd>No database exists for tables to be inquired on</dd>
+						<?php
+					}
+				}else{
+					//Create the tables if they don't exist
+					if(!$new){ 
+						//Create tables with IF NOT EXISTS flag
+					}else{
+						//Drop the old tables and create the new ones
+					}
+				}
+			?>
 
 			
 		</dl>
