@@ -28,6 +28,13 @@ include(BASE_URL . 'header.php');
 <div class="banner">
 	<span class="banner">P&amp;E</span>
 	<h1 class="banner">Suite House</h1>
+	<?php
+		if(!$loggedIn){
+			echo '<a href="login.php" class="banner">Log In</a>';
+		}else{
+			echo '<a href="logout.php" class="banner">Log Out</a>';
+		}
+	?>
 </div>
 
 <div>
@@ -46,6 +53,14 @@ include(BASE_URL . 'header.php');
 				Descriptive Text about the app and what it does
 			</p>
 			<a href="MyStuffManager/" alt="Use MyStuff Manager Application" class="appButton">MyStuff Manager</a>
+		</li>
+
+		<li>
+			<h2>Tasks</h2>
+			<p>
+				Descriptive Text about the app and what it does
+			</p>
+			<a href="" alt="Use the Task tracker" class="appButton">Tasks</a>
 		</li>
 	</ul>
 

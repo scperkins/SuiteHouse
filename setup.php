@@ -70,9 +70,9 @@ include(BASE_URL . 'header.php');
 						//Check out the existence of each table we need
 
 						//Users table
-						echo "<dt>Users Table</dt>";
+						echo "<dt>Members Table</dt>";
 						echo "<dd>";
-						echo (false !== mysql_query("SELECT 1 from `users`")) ? "Existing" : "Does not Exist, please run the creation script";
+						echo (false !== mysql_query("SELECT 1 from `members`")) ? "Existing" : "Does not Exist, please run the creation script";
 						echo "</dd>";
 
 						//Houses table
@@ -100,8 +100,38 @@ include(BASE_URL . 'header.php');
 					//Create the tables if they don't exist
 					if(!$new){ 
 						//Create tables with IF NOT EXISTS flag
+						echo "<dt>Members Table</dt>";
+						echo "<dd>";
+						if(false === mysql_query("SELECT 1 from `members`")){
+							$members = "CREATE TABLE IF NOT EXISTS members (
+								pkId INT(10) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+								fkHouseId INT(10) NULL,
+								membername VARCHAR(50),
+								salt CHAR(64),
+								encryptedPass CHAR(64),
+							);";
+							echo mysql_query($members) ? "Table Created" : "Table not created";
+						}else{
+							echo "Table already exists";
+						}
+						echo "</dd>";
+
+
 					}else{
 						//Drop the old tables and create the new ones
+
+						echo "<dt>Members Table</dt>";
+						echo "<dd>";
+						mysql_query("DROP TABLE `members`;");
+						$members = "CREATE TABLE `members` (
+								pkId INT(10) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+								fkHouseId INT(10) NULL,
+								membername VARCHAR(50),
+								salt CHAR(64),
+								encryptedPass CHAR(64),
+							);";
+						echo mysql_query($members) ? "Table Created" : "Table not created";
+						echo "</dd>";
 					}
 				}
 			?>
