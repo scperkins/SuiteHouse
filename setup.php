@@ -9,7 +9,12 @@ if(!$connection){
 if($_GET['create']=='true'){
 	//This flag will inform the script to create the databases
 	$create = true;
+	//Recreate the whole database, dropping old tables
+	if($_GET['new']=='true'){
+		$new = true;
+	}
 }
+
 define('PAGE_TITLE','Initialization Script');
 include('header.php');
 ?>
@@ -17,12 +22,14 @@ include('header.php');
 		<h1>Suite House Setup</h1>
 
 		<p>
-			Informational Text goes here
+			Welcome to Suite House's Quick Installation Script! The status of the current install is listed below, you can use the links below to run the setup script to create the database and table schemas. You can also recreate the installation from scratch. If you do so, you will lose all data stored currently.
 		</p>
 
 		<div>
 			<!--Main Button to Click-->
+			<a href="?" alt="Status of the application">Status</a>
 			<a href="?create=true" alt="Setup Application">Run Setup</a>
+			<a href="?create=true&amp;new=true" onclick="return confirm('Are you sure you want to recreate Suite House? This will remove all current data');" alt="Fresh Installation">Recreate All (cannot be undone)</a>
 		</div>
 
 		<hr>
@@ -37,7 +44,13 @@ include('header.php');
 					}else{
 						//Create primary database
 						if(mysql_select_db(DATABASE_NAME)){
-							echo "Database Already Exists";
+							if($new){
+								//Drop database and recreate it
+								mysql_query("DROP DATABASE IF EXISTS " .DATABASE_NAME);
+								echo mysql_query("CREATE DATABASE " . DATABASE_NAME) ? "Database Created Successfully" : "Database creation Failed";	
+							}else{
+								echo "Database Already Exists";	
+							}
 						}else{
 							$created = mysql_query("CREATE DATABASE " . DATABASE_NAME);
 							echo $created ? "Database Created Successfully" : "Database creation Failed";
@@ -52,19 +65,50 @@ include('header.php');
 			<dt>Suite Money Database</dt>
 			<dd>Status:
 				<?php
-					echo mysql_select_db(DB_SUITE_MONEY_NAME) ? "Exists" : "Does not Exist";	
+					if(!$create){
+						echo mysql_select_db(DB_SUITE_MONEY_NAME) ? "Exists" : "Does not Exist";	
+					}else{
+						//Suite money Database creation
+						if(mysql_select_db(DB_SUITE_MONEY_NAME)){
+							if($new){
+								mysql_query("DROP DATABASE IF EXISTS " .DB_SUITE_MONEY_NAME);
+								echo mysql_query("CREATE DATABASE " .DB_SUITE_MONEY_NAME) ? "Database Created Successfully" : "Database creation Failed";
+							}else{
+								echo "Database Already Exists";	
+							}
+						}else{
+							$created = mysql_query("CREATE DATABASE " . DB_SUITE_MONEY_NAME);
+							echo $created ? "Database Created Successfully" : "Database creation Failed";
+						}
+					}
 				?>
 			</dd>
 
 			<!--MyStuff Manager database, used for keeping inventory of your items -->
 			<dt>MyStuff Manager Database</dt>
-			<dd>
+			<dd>Status:
 				<?php
-					echo mysql_select_db(DB_MYSTUFF_MANAGER_NAME) ? "Exists" : "Does not Exist";	
+					if(!$create){
+						echo mysql_select_db(DB_MYSTUFF_MANAGER_NAME) ? "Exists" : "Does not Exist";		
+					}else{
+						//Inventory management creation
+						if(mysql_select_db(DB_MYSTUFF_MANAGER_NAME)){
+							if($new){
+								mysql_query("DROP DATABASE IF EXISTS " .DB_MYSTUFF_MANAGER_NAME);
+								echo mysql_query("CREATE DATABASE " .DB_MYSTUFF_MANAGER_NAME) ? "Database Created Successfully" : "Database creation Failed";
+							}else{
+								echo "Database Already Exists";	
+							}
+						}else{
+							$created = mysql_query("CREATE DATABASE " . DB_MYSTUFF_MANAGER_NAME);
+							echo $created ? "Database Created Successfully" : "Database creation Failed";
+						}	
+					}
+					
 				?>
 			</dd>
 
 		</dl>
-	</body>
-
-</html>
+<?php
+include('footer.php');
+?>
