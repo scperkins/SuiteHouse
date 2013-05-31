@@ -1,6 +1,6 @@
 <?php
 
-require_once(BASE_URL . 'config.php');
+require_once('config.php');
 
 //Check if our database is configured
 $configured = false;
@@ -18,7 +18,7 @@ if($connection){
 }
 
 if(!$configured){ //Send them to the setup page
-	header('location:status.php?from=index');
+	header('location:setup.php?from=index');
 }
 
 //Otherwise it's time to display the landlord start page

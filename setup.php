@@ -1,5 +1,5 @@
 <?php
-require_once(BASE_URL . 'config.php');
+require_once('config.php');
 $connection = mysql_connect(DATABASE_HOST,DATABASE_USER,DATABASE_PASS);
 if(!$connection){
 	//This is a bad error. DIE!
