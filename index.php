@@ -9,7 +9,7 @@ $connection = mysql_connect(DATABASE_HOST,DATABASE_USER,DATABASE_PASS);
 
 if($connection){
 	//This is a good start, now does our database exist?
-	if(mysql_select_db(DATABASE_NAME) && mysql_select_db(DB_SUITE_MONEY_NAME) && mysql_select_db(DB_MYSTUFF_MANAGER_NAME)){
+	if(mysql_select_db(DATABASE_NAME)){
 		//We've connected to the database and we'll assume that the database is correctly configured as well
 		$configured = true;
 	}
@@ -45,7 +45,7 @@ include('header.php');
 			<p>
 				Descriptive Text about the app and what it does
 			</p>
-			<a href="" alt="Use MyStuff Manager Application" class="appButton">MyStuff Manager</a>
+			<a href="MyStuffManager/" alt="Use MyStuff Manager Application" class="appButton">MyStuff Manager</a>
 		</li>
 	</ul>
 

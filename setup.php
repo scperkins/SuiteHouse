@@ -62,53 +62,9 @@ include('header.php');
 				?>
 			</dd>
 
-			<!--Suite Money database, used for logging into the Finance Application -->
-			<dt>Suite Money Database</dt>
-			<dd>Status:
-				<?php
-					if(!$create){
-						echo mysql_select_db(DB_SUITE_MONEY_NAME) ? "Exists" : "Does not Exist";	
-					}else{
-						//Suite money Database creation
-						if(mysql_select_db(DB_SUITE_MONEY_NAME)){
-							if($new){
-								mysql_query("DROP DATABASE IF EXISTS " .DB_SUITE_MONEY_NAME);
-								echo mysql_query("CREATE DATABASE " .DB_SUITE_MONEY_NAME) ? "Database Created Successfully" : "Database creation Failed";
-							}else{
-								echo "Database Already Exists";	
-							}
-						}else{
-							$created = mysql_query("CREATE DATABASE " . DB_SUITE_MONEY_NAME);
-							echo $created ? "Database Created Successfully" : "Database creation Failed";
-						}
-					}
-				?>
-			</dd>
+			<!-- Run configuration of tables here -->
 
-			<!--MyStuff Manager database, used for keeping inventory of your items -->
-			<dt>MyStuff Manager Database</dt>
-			<dd>Status:
-				<?php
-					if(!$create){
-						echo mysql_select_db(DB_MYSTUFF_MANAGER_NAME) ? "Exists" : "Does not Exist";		
-					}else{
-						//Inventory management creation
-						if(mysql_select_db(DB_MYSTUFF_MANAGER_NAME)){
-							if($new){
-								mysql_query("DROP DATABASE IF EXISTS " .DB_MYSTUFF_MANAGER_NAME);
-								echo mysql_query("CREATE DATABASE " .DB_MYSTUFF_MANAGER_NAME) ? "Database Created Successfully" : "Database creation Failed";
-							}else{
-								echo "Database Already Exists";	
-							}
-						}else{
-							$created = mysql_query("CREATE DATABASE " . DB_MYSTUFF_MANAGER_NAME);
-							echo $created ? "Database Created Successfully" : "Database creation Failed";
-						}	
-					}
-					
-				?>
-			</dd>
-
+			
 		</dl>
 <?php
 include('footer.php');

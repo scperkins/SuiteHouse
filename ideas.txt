@@ -1,0 +1,22 @@
+Plans:
+==========
+
+Applications:
+
+- Login and Groupage
+- Unnamed App (Chore/Task lists)
+- MyStuff Manager (Inventory System)
+- Suite Money (Complicated)
+
+Groupings:
+
+- A User can belong to only one House
+- Multiple Users belong to a single House
+
+Task List
+------------
+
+What does it have to do?
+
+
+ 
