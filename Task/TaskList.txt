@@ -1,0 +1,35 @@
+/*
+Task List
+What does it have to do?
+-create checklist items
+-delete/archive check list items
+-update items
+-be assigned to a member of the house/multiple members?
+irsetnd hrt rt y
+Database concerns:
+-Belongs to a House (fk)
+-Assigned to a User (fk) >>> Can it be tasked to multiple users?
+-Has a Task Title
+-Has a description of what needs to be done
+-Boolean for if it is done or not
+
+Program Structure
+
+User logs in with their credentials 
+User's can create a House or join a House (need permission from 'landlord' or person who made the House)
+Once associated with a House the User can take part in the tasks, finances, and etc for the house
+
+Focusing on Tasks:
+ Tasks have the schema described above in Database concerns
+ 
+ User Interface:
+     What can a user do? << Permissions Group setup by Landlord
+         -A User can elect to close a task, once 50% of members of the house have done so it is closed, or if the landlord/owner of the task closes it, it's closed
+         -Should we allow comments on the task? maybe eventually, for now let's keep it simple.
+         - 
+         -
+      General Idea for a Query to get tasks for a house:
+          SELECT t.pkId,t.title,t.description,t.votes,COUNT(h.members) as numMembers FROM `tasks` t INNER JOIN `house` h ON t.fkHouseId=h.pkId
+
+*/
+

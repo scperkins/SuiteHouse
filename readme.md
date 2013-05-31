@@ -24,11 +24,8 @@ Installation
 --------------
 
 ```sh
-git clone [git-repo-url] dillinger
-cd dillinger
-npm i -d
-mkdir -p public/files/{md,html}
-node app
+git clone git@github.com:EJEHardenberg/SuiteHouse.git SuiteHouse
+cd SuiteHouse
 ```
 
 
