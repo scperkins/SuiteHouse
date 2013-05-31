@@ -2,7 +2,7 @@ P&E Suite House
 =========
 
 A fully integrated house management suite including
-    > Expense Guard
+    > SuiteMoney
     > MyStuff Manager
 
 Suite House is a combination of programs designed to improve your house's productivity and helpfulness. 
@@ -13,7 +13,10 @@ Version
 
 Tech
 -----------
-Suite House runs on apache2 webserver and uses mySQL and php 5.3 or newer.
+- apache2 Webserver
+- mySQL
+- php 5
+
 
 
 Installation
