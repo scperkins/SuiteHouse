@@ -8,8 +8,8 @@
 		?>
 		
 		<meta name="description" content="">
-		<meta name="keywords" content="Ethan Eldridge,Ethan,Eldridge,UVM,ejeldrid,Computer Science,Suite House,Budget,Buddy,Inventory">
-		<link rel="stylesheet" href="style/global.css" type="text/css">
+		<meta name="keywords" content="Sean Perkins,Sean,Perkins,Ethan Eldridge,Ethan,Eldridge,ejeldrid,Computer Science,Suite House,Budget,Buddy,Inventory">
+		<link rel="stylesheet" href="<?php BASE_URL ?>style/global.css" type="text/css">
 
 	</head>
 

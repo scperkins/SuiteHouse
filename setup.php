@@ -1,5 +1,5 @@
 <?php
-require_once('config.php');
+require_once(BASE_URL . 'config.php');
 $connection = mysql_connect(DATABASE_HOST,DATABASE_USER,DATABASE_PASS);
 if(!$connection){
 	//This is a bad error. DIE!
@@ -16,7 +16,7 @@ if($_GET['create']=='true'){
 }
 
 define('PAGE_TITLE','Initialization Script');
-include('header.php');
+include(BASE_URL . 'header.php');
 ?>
 
 		<h1>Suite House Setup</h1>
@@ -67,5 +67,5 @@ include('header.php');
 			
 		</dl>
 <?php
-include('footer.php');
+include(BASE_URL . 'footer.php');
 ?>

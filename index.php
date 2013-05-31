@@ -1,6 +1,6 @@
 <?php
 
-require_once('config.php');
+require_once(BASE_URL . 'config.php');
 
 //Check if our database is configured
 $configured = false;
@@ -22,7 +22,7 @@ if(!$configured){ //Send them to the setup page
 }
 
 //Otherwise it's time to display the landlord start page
-include('header.php');
+include(BASE_URL . 'header.php');
 ?>
 
 <div class="banner">
@@ -54,7 +54,7 @@ include('header.php');
 
 
 <?php
-include('footer.php');
+include(BASE_URL . 'footer.php');
 ?>
 
 
