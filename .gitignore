@@ -1,0 +1,6 @@
+#Ignore apache error log generated in this directory
+error.log
+
+#Ignore Configuration Files
+config.php
+config.sql
