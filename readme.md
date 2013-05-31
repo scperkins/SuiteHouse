@@ -2,8 +2,9 @@ P&E Suite House
 =========
 
 A fully integrated house management suite including
-    > SuiteMoney
-    > MyStuff Manager
+
+  > SuiteMoney
+  > MyStuff Manager
 
 Suite House is a combination of programs designed to improve your house's productivity and helpfulness. 
 
