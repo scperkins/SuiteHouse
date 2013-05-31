@@ -27,6 +27,7 @@ include('header.php');
 
 		<div>
 			<!--Main Button to Click-->
+			<a href="index.php" alt="Return home">Return to the front page</a>
 			<a href="?" alt="Status of the application">Status</a>
 			<a href="?create=true" alt="Setup Application">Run Setup</a>
 			<a href="?create=true&amp;new=true" onclick="return confirm('Are you sure you want to recreate Suite House? This will remove all current data');" alt="Fresh Installation">Recreate All (cannot be undone)</a>

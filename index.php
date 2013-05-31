@@ -25,7 +25,32 @@ if(!$configured){ //Send them to the setup page
 include('header.php');
 ?>
 
-Content go here
+<div class="banner">
+	<span class="banner">P&amp;E</span>
+	<h1 class="banner">Suite House</h1>
+</div>
+
+<div>
+	<ul class="appList">
+		<li>
+			<h2>Suite Money</h2>
+			<p>
+				Descriptive Text about the app and what it does
+			</p>
+			<a href="" alt="Use Suite Money Application" class="appButton">Suite Money</a>
+		</li>
+
+		<li>
+			<h2>MyStuff Manager</h2>
+			<p>
+				Descriptive Text about the app and what it does
+			</p>
+			<a href="" alt="Use MyStuff Manager Application" class="appButton">MyStuff Manager</a>
+		</li>
+	</ul>
+
+</div>
+
 
 
 <?php
