@@ -4,3 +4,6 @@ error.log
 #Ignore Configuration Files
 config.php
 config.sql
+
+#ignore the git folder in the SuiteHouse directory
+SuiteHouse/.git
