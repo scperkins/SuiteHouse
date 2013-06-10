@@ -24,7 +24,7 @@ class CheckBookItem(ndb.Model):
 	checkbook = ndb.IntegerProperty() #checkbook key
 
 class CheckBookModel(ndb.Model):
-	"""Model of a checkbook, has a one to many relationship with CheckBookItems and a one to one to users"""
+	"""Model of a checkbook, has a one to many relationship with CheckBookItems and a o to one to users"""
 	associated_user = ndb.IntegerProperty() #user_id of user
 	totalIncome = ndb.FloatProperty()
 	totalExpenses = ndb.FloatProperty()

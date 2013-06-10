@@ -12,6 +12,18 @@
     min-height: 150px;
     text-align: left;
 }
+.boxes li a{
+	display: block;
+	width: 100%;
+	opacity: .7;
+	opacity: .8;
+	transition: opacity,background-color .5s ease-in-out;
+	-moz-transition: opacity,background-color .5s ease-in-out;
+    -webkit-transition: opacity,background-color .5s ease-in-out;
+}
+.boxes li a:hover{
+	background-color: #aaaaff;
+}
 .boxes li:hover{
 	background-color: #aaaaaa;
 	opacity: 1;
