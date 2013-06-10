@@ -32,5 +32,6 @@ class FinancePage(webapp2.RequestHandler):
 
 application = webapp2.WSGIApplication([
     ('/finance',FinancePage),
+    ('/finance/',FinancePage),
     ('/finance/checkbook',checkbook.CheckBook),
 ], debug=True)

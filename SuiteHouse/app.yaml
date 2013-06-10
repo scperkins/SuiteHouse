@@ -15,6 +15,10 @@ handlers:
 - url: /js
   static_dir: js
 
+- url: /favicon.ico
+  static_files: favicon.ico
+  upload: favicon.cio
+
 - url: /finance.*
   script: finance.finance.application
 
