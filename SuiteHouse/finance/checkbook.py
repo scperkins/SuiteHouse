@@ -25,5 +25,5 @@ class CheckBook(webapp2.RequestHandler):
 			'username': user.nickname(),
 		}
 
-		template = JINJA_ENVIRONMENT.get_template('index.html')
+		template = JINJA_ENVIRONMENT.get_template('checkbook.html')
 		self.response.write(template.render(template_values))
