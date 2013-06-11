@@ -34,4 +34,5 @@ application = webapp2.WSGIApplication([
     ('/finance',FinancePage),
     ('/finance/',FinancePage),
     ('/finance/checkbook',checkbook.CheckBook),
+    ('/finance/checkbook/',checkbook.CheckBook),
 ], debug=True)

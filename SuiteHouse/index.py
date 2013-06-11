@@ -1,6 +1,7 @@
 #Import google sign in
 from google.appengine.api import users
-from google.appengine.ext import ndb
+from google.appengine.ext import db
+
 
 import webapp2
 import jinja2

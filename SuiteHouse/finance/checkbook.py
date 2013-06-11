@@ -2,7 +2,7 @@
 from google.appengine.api import users
 
 #database modeling
-from google.appengine.ext import ndb
+from google.appengine.ext import db
 
 import webapp2
 import jinja2
@@ -10,27 +10,28 @@ import jinja2
 #Import os for finding jinja
 import os
 
+import cgi
+
 #Make sure to setup the template rendering evironment in the templates directory
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__) + '/templates/'),
-    extensions=['jinja2.ext.autoescape'])
+    extensions=['jinja2.ext.autoescape'],autoescape=True)
 
 
-class CheckBookItem(ndb.Model):
+class CheckBookItem(db.Model):
 	"""Model of a checkbook item"""
-	description = ndb.StringProperty(indexed=False)
-	date = ndb.DateProperty(auto_now_add=True)
-	amount = ndb.FloatProperty()
-	checkbook = ndb.IntegerProperty() #checkbook key
+	description = db.StringProperty(indexed=False)
+	date = db.DateProperty(auto_now_add=True)
+	amount = db.FloatProperty(required=True)
+	associated_user = db.StringProperty(required=True) #user_id of user
 
-class CheckBookModel(ndb.Model):
-	"""Model of a checkbook, has a one to many relationship with CheckBookItems and a o to one to users"""
-	associated_user = ndb.IntegerProperty() #user_id of user
-	totalIncome = ndb.FloatProperty()
-	totalExpenses = ndb.FloatProperty()
-
+	@classmethod
+	def by_id(cls,uid):
+		c = CheckBookItem.all().filter('associated_user =',uid)
+		return c
 
 
+import logging
 
 class CheckBook(webapp2.RequestHandler):
 
@@ -38,12 +39,12 @@ class CheckBook(webapp2.RequestHandler):
 		user = users.get_current_user()
 
 		if user:
-			#Get the checkbook associated with this user
-			checkbook = CheckBookModel.query(ancestor=ndb.Key('AssociatedUser',user.user_id())).fetch(1)
-			
+			#Get all the items associated with the user
+			checkbook = CheckBookItem.by_id(user.nickname())
+
 			template_values = {
 				'username': user.nickname(),
-			}
+				'items' : checkbook			}
 
 			template = JINJA_ENVIRONMENT.get_template('checkbook.html')
 			self.response.write(template.render(template_values))
@@ -52,6 +53,13 @@ class CheckBook(webapp2.RequestHandler):
 
 	def post(self):
 		user = users.get_current_user()
-		checkbook = CheckBookModel(parent=ndb.Key('AssociatedUser',user.user_id()))
-		self.redirect('/finance/checkbook') #Probably want to pass some parameters to the url about success or not sucesss
+		desc = cgi.escape(self.request.get('description'))
+		amount = float(cgi.escape(self.request.get('amount')))
+
+		newItem = CheckBookItem(description=desc,amount=amount,associated_user=str(user.nickname()))
+		logging.info(newItem)
+		newItem.put()
+
+		#self.redirect('/finance/checkbook') #Probably want to pass some parameters to the url about success or not sucesss
+		self.get()
 		
