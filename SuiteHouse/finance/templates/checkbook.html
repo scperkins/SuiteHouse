@@ -51,7 +51,7 @@
                 <td>{{item.description}}</td>
                 <td>{{item.amount}}</td>
                 <td>{{item.date}}</td>
-                <td ><a class="deleteButton" ref="{{item.key}}">Delete</a></td>
+                <td ><a class="deleteButton" ref="{{item.key()}}">Delete</a></td>
               </tr>
               {% endfor %}
             </tbody>
@@ -65,9 +65,18 @@
         for (var i = buttons.length - 1; i >= 0; i--) {
           buttons[i].onclick = function(){
             //Confirm:
-            if(confirm('Are you sure you want to remove this item? -- This cannot be undone --')){
-
-            }
+            //if(confirm('Are you sure you want to remove this item? -- This cannot be undone --')){
+              var xmlHttp = new XMLHttpRequest();
+              xmlHttp.onreadystatechange = function(xmlHttp){
+                if(xmlHttp.readyState == 4 && xmlHttp.status == 200){
+                  console.log('submission worked');
+                }
+              }
+              xmlHttp.open('DELETE','/finance/checkbook',true);
+              var data = new FormData();
+              data.append('key',this.attributes.ref.nodeValue);
+              xmlHttp.send(data);
+            //}
           };
         };
         

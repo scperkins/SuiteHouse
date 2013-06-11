@@ -10,6 +10,8 @@ import jinja2
 #Import os for finding jinja
 import os
 
+#Import escaping and data parsing tools
+import json
 import cgi
 
 #Make sure to setup the template rendering evironment in the templates directory
@@ -66,7 +68,15 @@ class CheckBook(webapp2.RequestHandler):
 	def delete(self):
 		"""Respond to an http delete request, this will delete whatever CheckBookItem the request specifies"""
 
+		#Get the key to the item
 		logging.info(self.request.body)
+		key = self.request.get('key')
+		logging.info('=============')
+		logging.info(key)
+		item = db.get(db.Key(encoded=str(key)))
+		logging.info(item)
+
+		
 
 
 
