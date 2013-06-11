@@ -44,7 +44,8 @@ class CheckBook(webapp2.RequestHandler):
 
 			template_values = {
 				'username': user.nickname(),
-				'items' : checkbook			}
+				'items' : checkbook			
+			}
 
 			template = JINJA_ENVIRONMENT.get_template('checkbook.html')
 			self.response.write(template.render(template_values))
@@ -60,6 +61,13 @@ class CheckBook(webapp2.RequestHandler):
 		logging.info(newItem)
 		newItem.put()
 
-		#self.redirect('/finance/checkbook') #Probably want to pass some parameters to the url about success or not sucesss
-		self.get()
+		self.redirect('/finance/checkbook') #Probably want to pass some parameters to the url about success or not sucesss
+
+	def delete(self):
+		"""Respond to an http delete request, this will delete whatever CheckBookItem the request specifies"""
+
+		logging.info(self.request.body)
+
+
+
 		

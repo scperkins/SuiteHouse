@@ -17,11 +17,6 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__) + '/templates/'),
     extensions=['jinja2.ext.autoescape'])
 
-class User(ndb.Model):
-	"""User model for the datastore to hold so we can have a single user object to deal with"""
-	user_id = ndb.StringProperty() #Store the user_id() because it won't ever change
-
-
 class LandingPage(webapp2.RequestHandler):
 
 	def get(self):
