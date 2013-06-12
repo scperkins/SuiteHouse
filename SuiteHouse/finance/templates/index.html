@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <head>
+    {% include "globalStyles.html" %}
+     <!-- <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-41596225-1', 'suite-house.appspot.com');
+      ga('send', 'pageview');
+      </script> -->
+      <link rel="stylesheet" href="/stylesheets/finance.css" type="text/css">
+  </head>
+  <body>
+      <header>
+        <h1><span>P&amp;E</span>Suite House</h1>   	
+        <span class="loggedIn">You are logged in as {{username}} <br/><a href="/" style="display:inline;">Return to main menu</a></span>
+
+      </header>
+      	
+        <div class="centerMe">
+          <ul class="boxes">
+          	<li>
+          		<h3><a href="/finance/wishlist" >Wish List</a></h3>
+          		<p>Keep track of the things you want on your wish list and see if there's room in your budget by running the budgeteer program</p>
+          	</li>
+            <li>
+            	<h3><a href="/finance/checkbook" >Check Book</a></h3>
+            	<p>Keep track of your income and expenses with your checkbook, then go to the Budgeteer and see how you can manage your finances better</p>
+            </li>
+            <li><h3><a href="/finance/billTracker">Bill Tracker</a></h3>
+              	<p>Keep track of your bills with reminders, amounts, and more. </p>
+            </li>
+            <li><h3><a href="/finance/budget">Budgeteer Budget Assistant</a></h3>
+            	<p>Integrates your check book, bills and wishlist into a handy application that will help you manage your finances better, your own personal budget buddy!</p>
+            </li>
+
+          </ul>
+        </div>
+        
+  </body>
+</html>
+{% endautoescape %}
