@@ -69,13 +69,13 @@ class CheckBook(webapp2.RequestHandler):
 		"""Respond to an http delete request, this will delete whatever CheckBookItem the request specifies"""
 
 		#Get the key to the item
-		logging.info(self.request.body)
-		key = self.request.get('key')
-		logging.info('=============')
-		logging.info(key)
-		item = db.get(db.Key(encoded=str(key)))
-		logging.info(item)
+		body = json.loads((self.request.body))
+		key = body['key']
 
+		item = db.get(db.Key(encoded=str(key)))
+		item.delete()
+		self.response.set_status(200,json.dumps({'key' : key}))
+		self.response.write(key)
 		
 
 

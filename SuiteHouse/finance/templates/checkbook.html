@@ -21,6 +21,11 @@
         <span class="loggedIn">You are logged in as {{username}} <br/><a href="/" style="display:inline;">Return to main menu</a></span>
       </header>
 
+      <section>
+        <div>
+          <h1 id="header">{{username}}'s Checkbook</h1>
+        </div>
+      </section>
 
       <section>
         <div>
@@ -28,7 +33,9 @@
             Enter your items here
           </p>
           <form action="/finance/checkbook" method="POST">
+            <label for="desciption">Description</label>
             <input type="text" name="description" />
+            <label for="amount">Amount</label>
             <input type="number" step="0.01" min="0" name="amount" />
             <input type="submit" value="submit" />
           </form>
@@ -66,16 +73,22 @@
           buttons[i].onclick = function(){
             //Confirm:
             //if(confirm('Are you sure you want to remove this item? -- This cannot be undone --')){
+              var button = this;
+              
               var xmlHttp = new XMLHttpRequest();
               xmlHttp.onreadystatechange = function(xmlHttp){
-                if(xmlHttp.readyState == 4 && xmlHttp.status == 200){
-                  console.log('submission worked');
+                if(this.readyState == 4 && this.status == 200){
+                  var keyToDelete = this.response;
+                  //remove the button from the user's sight
+                  var tr = button.parentNode;
+                  tr.parentNode.remove(tr); 
                 }
               }
               xmlHttp.open('DELETE','/finance/checkbook',true);
               var data = new FormData();
               data.append('key',this.attributes.ref.nodeValue);
-              xmlHttp.send(data);
+
+              xmlHttp.send(JSON.stringify({'key' : this.attributes.ref.nodeValue}));
             //}
           };
         };
