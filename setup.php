@@ -5,12 +5,14 @@ if(!$connection){
 	//This is a bad error. DIE!
 	die('Could not connect to mySql at all, please verify your installation and config.php');
 }
+$create = null;
+$new = null;
 
-if($_GET['create']=='true'){
+if(isset($_GET['create']) && $_GET['create']=='true'){
 	//This flag will inform the script to create the databases
 	$create = true;
 	//Recreate the whole database, dropping old tables
-	if($_GET['new']=='true'){
+	if(isset($_GET['new']) && $_GET['new']=='true'){
 		$new = true;
 	}
 }

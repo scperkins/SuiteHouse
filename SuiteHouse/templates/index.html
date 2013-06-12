@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <head>
+    {% include "globalStyles.html" %}
+     <!-- <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-41596225-1', 'suite-house.appspot.com');
+      ga('send', 'pageview');
+      </script> -->
+  </head>
+  <body>
+      <header>
+        <h1><span>P&amp;E</span>Suite House</h1>   
+        <h2>Your personal house management system</h2>
+        <span class="loggedIn">You are logged in as {{username}}</span>
+      </header>
+      <div id="sidebar">
+        <h3>Suite Applications:</h3>
+        <ul id="nav">
+          <li><a id="aboutClick"> About SH    </a></li>
+          <li><a id="membersClick"> Members   </a></li>
+          <li><a id="financesClick">Finances  </a></li>
+          <li><a id="tasksClick">   Tasks     </a></li>
+        </ul>
+        <footer>
+          <h1>Developed by S. Perkins and E. Eldridge</h1>
+        </footer>
+      </div>
+        <div id="content"><span class="loggedIn">You are logged in as {{username}}</span>
+        <div id="aboutPane">
+          This is some really awesome text about all the trials and tribulations we put up with and shit to make this damn thing. Al"so we can replace this inline text with jinja blocks to make this easier to read.
+        </div>
+        <div id="membersPane">This pane tells the user about the member administration application which handles adding users to a house and all that type of stuff</div>
+        <div id="financesPane">
+          This pane tells the user about the various budgetting and finance applications available   through Suite House and provides nice links to each application right here. The finance applications will be connected, for example, one should be able to say you paid a certain bill from the bill tracker and create the bill from either checkbook or bill tracker. All this information can flow to the budgeting application which will perform the hardcore analysis
+
+          <ul>
+            <li><h3><a href="/finance" >Finance Applications<a/></h3>
+              Use our great financial applications to better your budget and yourself
+            </li>
+            <ul>
+            <li><h3><a href="/finance/checkbook" >Check Book</a></h3>
+              Informational text about the applications go here, describing what they do and everything like that
+            </li>
+            <li><h3><a href="/finance/wishlist" >Wish List  </a></h3>
+              Informational text about the applications go here, describing what they do and everything like that
+            </li>
+            <li><h3><a href="/finance/billTracker">Bill Tracker</a></h3>
+              Informational text about the applications go here, describing what they do and everything like that
+            </li>
+            <li><h3><a href="/finance/budget">Budget Assistance</a></h3>
+              Informational text about the applications go here, describing what they do and everything like that
+            </li>
+            </ul>
+
+          </ul>
+          
+        </div>
+        <div id="tasksPane">This pane tells the user a little bit about the tasks application and whatnot, I wonder if Sean has started imlpementing anything with this</div>
+      </div>
+      
+      <script type="text/javascript">
+        //Inline JS because it's not really neccesary to abstract this to another file and the page load will be quite fast this way
+        function hidePanes(){
+          var hideThese = document.getElementById('content').children;
+          for (var i = hideThese.length - 1; i >= 0; i--) {
+            hideThese[i].style.display = 'none';
+          }; 
+        }
+        //initially hide the panes besides about:
+        hidePanes();
+        document.getElementById('aboutPane').style.display = 'block';
+
+        document.getElementById('aboutClick').onclick = function(){ hidePanes();
+          document.getElementById('aboutPane').style.display = 'block';
+        }
+        document.getElementById('membersClick').onclick = function(){ hidePanes();
+          document.getElementById('membersPane').style.display = 'block';
+        }
+        document.getElementById('financesClick').onclick = function(){ hidePanes(); 
+          document.getElementById('financesPane').style.display ='block';
+        }
+        document.getElementById('tasksClick').onclick = function(){ hidePanes();
+          document.getElementById('tasksPane').style.display = 'block'
+        }
+      </script>
+  </body>
+</html>
+{% endautoescape %}
