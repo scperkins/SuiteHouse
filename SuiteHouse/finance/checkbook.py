@@ -63,6 +63,8 @@ class CheckBook(webapp2.RequestHandler):
 		logging.info(newItem)
 		newItem.put()
 
+		#redirect the user to the proper page
+
 		self.redirect('/finance/checkbook') #Probably want to pass some parameters to the url about success or not sucesss
 
 	def delete(self):

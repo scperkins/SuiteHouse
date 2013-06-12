@@ -54,6 +54,7 @@
             </thead>
             <tbody>
               {% for item in items %}
+              <!-- ref for updating information using key-->
               <tr class="{{ loop.cycle('alt', '') }}" ref="{{item.key()}}">
                 <td>{{item.description}}</td>
                 <td>{{item.amount}}</td>
